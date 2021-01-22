@@ -6,12 +6,20 @@
  * Throw InvalidArgumentException if $minute is negative of greater then 60.
  * @see https://www.php.net/manual/en/class.invalidargumentexception.php
  *
- * @param  int  $minute
+ * @param int $minute
  * @return string
  * @throws InvalidArgumentException
  */
 function getMinuteQuarter(int $minute)
 {
+    if (!is_int($minute) || $minute < 0 || $minute >= 60) {
+        throw new InvalidArgumentException(
+            "getMinuteQuarter function only accepts not negative integers and less than sixty.
+             Input was: " . $minute);
+    } else if ($minute > 0 && $minute <= 15) return "first";
+    else if ($minute > 15 && $minute <= 30) return "second";
+    else if ($minute > 30 && $minute <= 45) return "third";
+    else return "fourth";
 }
 
 /**
@@ -21,12 +29,17 @@ function getMinuteQuarter(int $minute)
  * @see https://en.wikipedia.org/wiki/Leap_year
  * @see https://www.php.net/manual/en/class.invalidargumentexception.php
  *
- * @param  int  $year
+ * @param int $year
  * @return boolean
  * @throws InvalidArgumentException
  */
 function isLeapYear(int $year)
 {
+    if (!is_int($year) || $year < 1900) {
+        throw new InvalidArgumentException(
+            "isLeapYear function only accepts integers and less than 1900.
+             Input was: " . $year);
+    } else return (!($year % 4) && ($year % 100 || !($year % 400)));
 }
 
 /**
@@ -36,10 +49,24 @@ function isLeapYear(int $year)
  * Throw InvalidArgumentException if $input contains more then 6 digits.
  * @see https://www.php.net/manual/en/class.invalidargumentexception.php
  *
- * @param  string  $input
+ * @param string $input
  * @return boolean
  * @throws InvalidArgumentException
  */
 function isSumEqual(string $input)
 {
+    $sum1 = 0;
+    $sum2 = 0;
+    if (!is_string($input) || !(strlen($input) == 6)) {
+        throw new InvalidArgumentException(
+            "isSumEqual function only accepts a string of six digits.
+             Input was: " . $input);
+    } else {
+        for ($i = 0; $i < 6; $i++) {
+            if ($i < 3) {
+                $sum1 += (int)$input[$i];
+            } else $sum2 += (int)$input[$i];
+        }
+        return !((bool)($sum1 - $sum2));
+    }
 }
