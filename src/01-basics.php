@@ -10,16 +10,21 @@
  * @return string
  * @throws InvalidArgumentException
  */
-function getMinuteQuarter(int $minute)
+function getMinuteQuarter(int $minute): string
 {
     if (!is_int($minute) || $minute < 0 || $minute >= 60) {
         throw new InvalidArgumentException(
             "getMinuteQuarter function only accepts not negative integers and less than sixty.
              Input was: " . $minute);
-    } else if ($minute > 0 && $minute <= 15) return "first";
-    else if ($minute > 15 && $minute <= 30) return "second";
-    else if ($minute > 30 && $minute <= 45) return "third";
-    else return "fourth";
+    } elseif ($minute > 0 && $minute <= 15) {
+        return "first";
+    } elseif ($minute > 15 && $minute <= 30) {
+        return "second";
+    } elseif ($minute > 30 && $minute <= 45) {
+        return "third";
+    } else {
+        return "fourth";
+    }
 }
 
 /**
@@ -33,13 +38,15 @@ function getMinuteQuarter(int $minute)
  * @return boolean
  * @throws InvalidArgumentException
  */
-function isLeapYear(int $year)
+function isLeapYear(int $year): bool
 {
     if (!is_int($year) || $year < 1900) {
         throw new InvalidArgumentException(
             "isLeapYear function only accepts integers and less than 1900.
              Input was: " . $year);
-    } else return (!($year % 4) && ($year % 100 || !($year % 400)));
+    } else {
+        return (!($year % 4) && ($year % 100 || !($year % 400)));
+    }
 }
 
 /**
@@ -53,7 +60,7 @@ function isLeapYear(int $year)
  * @return boolean
  * @throws InvalidArgumentException
  */
-function isSumEqual(string $input)
+function isSumEqual(string $input): bool
 {
     $sum1 = 0;
     $sum2 = 0;
@@ -65,7 +72,9 @@ function isSumEqual(string $input)
         for ($i = 0; $i < 6; $i++) {
             if ($i < 3) {
                 $sum1 += (int)$input[$i];
-            } else $sum2 += (int)$input[$i];
+            } else {
+                $sum2 += (int)$input[$i];
+            }
         }
         return !((bool)($sum1 - $sum2));
     }
