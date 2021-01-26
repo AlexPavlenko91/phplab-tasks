@@ -7,7 +7,7 @@
  * @param string $input
  * @return string
  */
-function snakeCaseToCamelCase(string $input)
+function snakeCaseToCamelCase(string $input): string
 {
     return lcfirst(str_replace('_', '', ucwords($input, '_')));
 }
@@ -20,7 +20,7 @@ function snakeCaseToCamelCase(string $input)
  * @param string $input
  * @return string
  */
-function mirrorMultibyteString(string $input)
+function mirrorMultibyteString(string $input): string
 {
     $words = explode(' ', $input);
     foreach ($words as $key => $str) {
@@ -47,9 +47,11 @@ function mirrorMultibyteString(string $input)
  * @param string $noun
  * @return string
  */
-function getBrandName(string $noun)
+function getBrandName(string $noun): string
 {
     if ($noun[0] === substr($noun, -1)) {
         return ucfirst($noun . substr($noun, 1, strlen($noun)));
-    } else return 'The ' . ucfirst($noun);
+    } else {
+        return 'The ' . ucfirst($noun);
+    }
 }
