@@ -11,9 +11,9 @@
 function repeatArrayValues(array $input): array
 {
     $output = [];
-    foreach ($input as $key => $value) {
-        for ($i = 0; $i < $value; $i++) {
-            array_push($output, $value);
+    foreach ($input as $key => $val) {
+        for ($i = 0; $i < $val; $i++) {
+            array_push($output, $val);
         }
     }
     return $output;
