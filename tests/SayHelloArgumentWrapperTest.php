@@ -2,7 +2,7 @@
 
 use PHPUnit\Framework\TestCase;
 
-class SayHelloArgumentTest extends TestCase
+class SayHelloArgumentWrapperTest extends TestCase
 {
     /**
      * @dataProvider positiveDataProvider
@@ -11,7 +11,7 @@ class SayHelloArgumentTest extends TestCase
      */
     public function testPositive($expected, $input)
     {
-        $this->assertEquals($expected, sayHelloArgument($input));
+        $this->assertEquals($expected, sayHelloArgumentWrapper($input));
     }
 
     public function positiveDataProvider(): array
@@ -20,7 +20,7 @@ class SayHelloArgumentTest extends TestCase
             ['Hello friend', 'friend'],
             ['Hello ', ''],
             ['Hello 123', 123],
-            ['Hello 1', true]   
+            ['Hello -1', -1]
         ];
     }
 }

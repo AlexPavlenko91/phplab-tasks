@@ -5,7 +5,7 @@
  *
  * @return string
  */
-function sayHello()
+function sayHello(): string
 {
     return 'Hello';
 }
@@ -17,7 +17,7 @@ function sayHello()
  * @param $arg
  * @return string
  */
-function sayHelloArgument($arg)
+function sayHelloArgument($arg): string
 {
     return "Hello $arg";
 }
@@ -33,10 +33,13 @@ function sayHelloArgument($arg)
  * @return string
  * @throws InvalidArgumentException
  */
-function sayHelloArgumentWrapper($arg)
+function sayHelloArgumentWrapper($arg): string
 {
     // put your code here
-
+    if (!is_int($arg) || !is_string($arg)|| !is_bool($arg)){
+        throw new InvalidArgumentException(
+            "sayHelloArgumentWrapper function only accepts number, string or bool.");
+    }
     return sayHelloArgument($arg);
 }
 
