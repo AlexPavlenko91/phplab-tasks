@@ -5,7 +5,6 @@ use PHPUnit\Framework\TestCase;
 class SayHelloArgumentWrapperTest extends TestCase
 {
     /**
-     * @dataProvider positiveDataProvider
      * @param $expected
      * @param $input
      */
@@ -14,13 +13,8 @@ class SayHelloArgumentWrapperTest extends TestCase
         $this->assertEquals($expected, sayHelloArgumentWrapper($input));
     }
 
-    public function positiveDataProvider(): array
+    public function testException(): void
     {
-        return [
-            ['Hello friend', 'friend'],
-            ['Hello ', ''],
-            ['Hello 123', 123],
-            ['Hello -1', -1]
-        ];
+        $this->expectException(InvalidArgumentException::class);
     }
 }
