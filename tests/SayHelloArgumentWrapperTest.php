@@ -8,6 +8,7 @@ class SayHelloArgumentWrapperTest extends TestCase
      * @param $expected
      * @param $input
      */
+
     public function testPositive($expected, $input)
     {
         $this->assertEquals($expected, sayHelloArgumentWrapper($input));
@@ -16,5 +17,5 @@ class SayHelloArgumentWrapperTest extends TestCase
     public function testException(): void
     {
         $this->expectException(InvalidArgumentException::class);
-    }
+    }#
 }
