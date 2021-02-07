@@ -20,7 +20,7 @@ class SayHelloArgumentTest extends TestCase
             ['Hello friend', 'friend'],
             ['Hello ', ''],
             ['Hello 123', 123],
-            ['Hello 1', true]   
+            ['Hello 1', true]
         ];
     }
 }
