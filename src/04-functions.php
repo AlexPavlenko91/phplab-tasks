@@ -35,10 +35,9 @@ function sayHelloArgument($arg): string
  */
 function sayHelloArgumentWrapper($arg): string
 {
-    // put your code here
-    if (!is_int($arg) || !is_string($arg)|| !is_bool($arg)){
+    if (!is_scalar($arg)) {
         throw new InvalidArgumentException(
-            "sayHelloArgumentWrapper function only accepts number, string or bool.");
+            'sayHelloArgumentWrapper function only accepts number, string or bool.');
     }
     return sayHelloArgument($arg);
 }
@@ -49,10 +48,10 @@ function sayHelloArgumentWrapper($arg): string
  *
  * @return array
  */
-function countArguments()
+function countArguments(): array
 {
     return [
-        'argument_count'  => func_num_args(),
+        'argument_count' => func_num_args(),
         'argument_values' => func_get_args(),
     ];
 }
@@ -68,9 +67,16 @@ function countArguments()
  * @see https://www.php.net/manual/en/migration56.new-features.php#migration56.new-features.splat
  *
  * @return array
- * @throws InvalidArgumentException
+ *
  */
-function countArgumentsWrapper()
+function countArgumentsWrapper(): array
 {
-    // put your code here
+    $arg = func_get_args();
+    foreach ($arg as $item) {
+        if (!is_string($item)) {
+            throw new InvalidArgumentException(
+                'countArgumentsWrapper function only accepts strings.');
+        }
+    }
+    return countArguments(...$arg);
 }
