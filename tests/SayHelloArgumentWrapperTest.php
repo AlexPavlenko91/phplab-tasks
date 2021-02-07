@@ -2,13 +2,26 @@
 
 use PHPUnit\Framework\TestCase;
 
+
 class SayHelloArgumentWrapperTest extends TestCase
 {
-    public function testException()
+    /**
+     * @dataProvider exceptionDataProvider
+     * @param $input
+     */
+
+    public function testException($input)
     {
         $this->expectException(InvalidArgumentException::class);
-        sayHelloArgumentWrapper([1,2,3]);
-        sayHelloArgumentWrapper([1,2,['first', 'second']]);
-        sayHelloArgumentWrapper((object)[1,2,3]);
+        sayHelloArgumentWrapper($input);
+    }
+
+    public function exceptionDataProvider(): array
+    {
+        return [
+            [ null ],
+            [[1, 2, ['first', 'second']]],
+            [(object)[1, 2, 3]]
+        ];
     }
 }
