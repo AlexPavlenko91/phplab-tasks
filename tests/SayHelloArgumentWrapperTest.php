@@ -19,7 +19,7 @@ class SayHelloArgumentWrapperTest extends TestCase
     public function exceptionDataProvider(): array
     {
         return [
-            [ null ],
+            [null],
             [[1, 2, ['first', 'second']]],
             [(object)[1, 2, 3]]
         ];
